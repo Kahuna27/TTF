@@ -3,26 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Timbertop Fencing | Colorbond, Aluminium, Timber, PVC & Retaining Walls</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1a5fb4;
-      --primary-dark: #144a8c;
-      --dark: #1a1a1a;
-      --light: #f8f9fa;<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Timbertop Fencing | Expert Colorbond, Aluminium, Timber & Retaining Walls</title>
+  <title>Timbertop Fencing | Expert Fencing by Chris</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --primary: #1a5fb4; /* Blue for trust */
+      --primary: #1a5fb4;
       --primary-dark: #0f3d7a;
-      --accent: #4CAF50; /* Green for growth/Aussie vibe */
+      --accent: #4CAF50;
       --dark: #0a0a0a;
       --light: #ffffff;
       --gray-light: #f8f9fa;
@@ -32,38 +20,22 @@
       --border-radius: 16px;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; }
     .container { max-width: 1200px; margin: auto; padding: 0 1.5rem; }
-    /* Hero: Full-width image/video overlay, bold headline */
+
     .hero {
       position: relative;
       height: 100vh;
       min-height: 600px;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('C1.jpg') center/cover no-repeat; /* Use your best fence image */
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('C1.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: var(--light);
     }
-    .hero-content h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-    .hero-content .tagline {
-      font-size: 1.5rem;
-      font-weight: 300;
-      margin-bottom: 2rem;
-      opacity: 0.95;
-    }
+    .hero-content h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; }
+    .hero-content .tagline { font-size: 1.5rem; font-weight: 300; margin-bottom: 2rem; opacity: 0.95; }
     .cta-button {
       display: inline-block;
       background: var(--primary);
@@ -76,35 +48,13 @@
       transition: all 0.3s ease;
       box-shadow: var(--shadow);
     }
-    .cta-button:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-    }
-    /* Sections: Clean spacing, bold subheads */
-    .section {
-      padding: 5rem 0;
-    }
-    .section h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 3rem;
-      color: var(--dark);
-    }
-    .section p.intro {
-      text-align: center;
-      font-size: 1.2rem;
-      color: var(--gray);
-      max-width: 800px;
-      margin: 0 auto 3rem;
-    }
-    /* Services: Card grid with hover, image top */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
+    .cta-button:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+    .section { padding: 5rem 0; }
+    .section h2 { font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 3rem; color: var(--dark); }
+    .section p.intro { text-align: center; font-size: 1.2rem; color: var(--gray); max-width: 800px; margin: 0 auto 3rem; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
     .service-card {
       background: var(--light);
       border-radius: var(--border-radius);
@@ -114,29 +64,11 @@
       text-align: center;
       position: relative;
     }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-hover);
-    }
-    .service-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .service-card-content {
-      padding: 2rem;
-    }
-    .service-card h3 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-    .service-card p {
-      color: var(--gray);
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
+    .service-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+    .service-card img { width: 100%; height: 220px; object-fit: cover; }
+    .service-card-content { padding: 2rem; }
+    .service-card h3 { font-size: 1.6rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+    .service-card p { color: var(--gray); font-size: 1rem; }
     .service-icon {
       position: absolute;
       top: -15px;
@@ -152,12 +84,8 @@
       justify-content: center;
       font-size: 1.2rem;
     }
-    /* Gallery: Full-width images with overlay labels */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .gallery-card {
       position: relative;
       border-radius: var(--border-radius);
@@ -166,15 +94,8 @@
       transition: all 0.3s ease;
       height: 250px;
     }
-    .gallery-card:hover {
-      transform: scale(1.02);
-      box-shadow: var(--shadow-hover);
-    }
-    .gallery-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .gallery-card:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
     .gallery-card::after {
       content: attr(data-label);
       position: absolute;
@@ -187,9 +108,8 @@
       border-radius: 25px;
       font-size: 1rem;
       font-weight: 600;
-      white-space: nowrap;
     }
-    /* Testimonials: Simple quote blocks */
+
     .testimonial {
       background: var(--gray-light);
       padding: 3rem;
@@ -201,31 +121,18 @@
       color: var(--gray);
       box-shadow: var(--shadow);
     }
-    .testimonial-author {
-      font-weight: 600;
-      color: var(--primary);
-      margin-top: 1rem;
-    }
-    /* Phone: Prominent CTA */
+    .testimonial-author { font-weight: 600; color: var(--primary); margin-top: 1rem; }
+
     .phone-section {
       text-align: center;
       background: var(--primary);
       color: var(--light);
       padding: 3rem 0;
     }
-    .phone {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    .phone a {
-      color: var(--light);
-      text-decoration: none;
-    }
-    /* Form: Clean, centered, with accent button */
-    .form-section {
-      background: var(--gray-light);
-    }
+    .phone { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+    .phone a { color: var(--light); text-decoration: none; }
+
+    .form-section { background: var(--gray-light); }
     form {
       max-width: 600px;
       margin: auto;
@@ -241,12 +148,8 @@
       border: 1px solid #e0e0e0;
       border-radius: 10px;
       font: inherit;
-      transition: border-color 0.3s;
     }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
+    input:focus, textarea:focus { outline: none; border-color: var(--primary); }
     button {
       background: var(--accent);
       color: var(--light);
@@ -258,11 +161,8 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    button:hover {
-      background: #45a049;
-      transform: translateY(-2px);
-    }
-    /* Footer: Minimal */
+    button:hover { background: #45a049; transform: translateY(-2px); }
+
     footer {
       background: var(--dark);
       color: var(--light);
@@ -270,7 +170,7 @@
       padding: 2rem 0;
       font-size: 0.9rem;
     }
-    /* Responsive */
+
     @media (max-width: 768px) {
       .hero-content h1 { font-size: 2.5rem; }
       .hero-content .tagline { font-size: 1.2rem; }
@@ -282,7 +182,6 @@
 </head>
 <body>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="hero-content container">
       <h1>Secure Your Space with Timbertop Fencing</h1>
@@ -293,13 +192,12 @@
 
   <div class="container">
 
-    <!-- Services -->
     <section class="section" id="services">
       <h2>Our Fencing Solutions</h2>
       <p class="intro">One solution for all your boundary needs – durable, custom, and hassle-free.</p>
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-palette"></i></div>
+          <div class="service-icon">Paint Brush</div>
           <img src="C1.jpg" alt="Colorbond Fencing">
           <div class="service-card-content">
             <h3>Colorbond Fencing</h3>
@@ -307,7 +205,7 @@
           </div>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-cube"></i></div>
+          <div class="service-icon">Cube</div>
           <img src="A1.jpg" alt="Aluminium Fencing">
           <div class="service-card-content">
             <h3>Aluminium Fencing</h3>
@@ -315,7 +213,7 @@
           </div>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-tree"></i></div>
+          <div class="service-icon">Tree</div>
           <img src="T1.jpg" alt="Timber Fencing">
           <div class="service-card-content">
             <h3>Timber Fencing</h3>
@@ -323,7 +221,7 @@
           </div>
         </div>
         <div class="service-card">
-          <div class="service-icon"><i class="fas fa-mountain"></i></div>
+          <div class="service-icon">Mountain</div>
           <img src="CR1.jpg" alt="Retaining Walls">
           <div class="service-card-content">
             <h3>Retaining Walls</h3>
@@ -333,42 +231,22 @@
       </div>
     </section>
 
-    <!-- Gallery -->
     <section class="section">
       <h2>Recent Projects</h2>
       <p class="intro">See our work in action – from backyards to commercial sites.</p>
       <div class="gallery-grid">
-        <div class="gallery-card" data-label="Colorbond Install">
-          <img src="C1.jpg" alt="Colorbond Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Colorbond Install">
-          <img src="C2.jpg" alt="Colorbond Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Colorbond Install">
-          <img src="C3.jpg" alt="Colorbond Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Aluminium Gate">
-          <img src="A1.jpg" alt="Aluminium Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Aluminium Gate">
-          <img src="A2.jpg" alt="Aluminium Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Timber Privacy">
-          <img src="T1.jpg" alt="Timber Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Timber Privacy">
-          <img src="T2.jpg" alt="Timber Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Concrete Retaining">
-          <img src="CR1.jpg" alt="Concrete Retaining Wall">
-        </div>
-        <div class="gallery-card" data-label="Hardwood Retaining">
-          <img src="HR1.jpg" alt="Hardwood Retaining Wall">
-        </div>
+        <div class="gallery-card" data-label="Colorbond Install"><img src="C1.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Colorbond Install"><img src="C2.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Colorbond Install"><img src="C3.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Aluminium Gate"><img src="A1.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Aluminium Gate"><img src="A2.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Timber Privacy"><img src="T1.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Timber Privacy"><img src="T2.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Concrete Retaining"><img src="CR1.jpg" alt=""></div>
+        <div class="gallery-card" data-label="Hardwood Retaining"><img src="HR1.jpg" alt=""></div>
       </div>
     </section>
 
-    <!-- Testimonial (Add real ones later) -->
     <section class="section">
       <div class="testimonial">
         <p>"Chris and the team transformed our backyard with a stunning Colorbond fence – fast, clean, and spot on budget!"</p>
@@ -378,15 +256,13 @@
 
   </div>
 
-  <!-- Phone CTA -->
   <section class="phone-section">
     <div class="container">
       <div class="phone">Ready to Start? Call Chris Today</div>
-      <a href="tel:+61400000000">0400 000 000</a>
+      <a href="tel:+61402346481">0402 346 481</a>
     </div>
   </section>
 
-  <!-- Contact Form -->
   <section class="section form-section" id="contact">
     <div class="container">
       <h2>Get Your Free Quote</h2>
@@ -403,225 +279,8 @@
 
   <footer>
     <div class="container">
-      &copy; 2025 Timbertop Fencing. Owned & Operated by Chris. All rights reserved.
+      © 2025 Timbertop Fencing. Owned & Operated by Chris. All rights reserved.
     </div>
-  </footer>
-
-</body>
-</html>
-      --gray: #6c757d;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-      --border-radius: 12px;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    .container { max-width: 1200px; margin: auto; padding: 2rem 1rem; }
-    header {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 4rem 1rem;
-    }
-    h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: .5rem; }
-    .tagline { font-size: 1.3rem; opacity: 0.9; }
-    .section { padding: 3rem 0; }
-    h2 { text-align: center; margin-bottom: 2rem; color: var(--primary); font-size: 2rem; }
-    .services-grid, .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .card {
-      background: white;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      text-align: center;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 1.5rem;
-    }
-    .card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .card p { color: var(--gray); font-size: 1rem; }
-    .gallery-card { position: relative; }
-    .gallery-card::after {
-      content: attr(data-label);
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-    .phone {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-align: center;
-      margin: 2rem 0;
-    }
-    form {
-      max-width: 600px;
-      margin: auto;
-      display: grid;
-      gap: 1rem;
-      background: white;
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-    }
-    input, textarea, button {
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font: inherit;
-    }
-    button {
-      background: var(--primary);
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-    button:hover { background: var(--primary-dark); }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
-      .phone { font-size: 1.5rem; }
-      .services-grid, .gallery-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="container">
-      <h1>Timbertop Fencing</h1>
-      <p class="tagline">Colorbond, Aluminium, Timber, PVC Fencing & Retaining Walls – Owned by Chris</p>
-    </div>
-  </header>
-
-  <div class="container">
-
-    <!-- SERVICES -->
-    <section class="section">
-      <h2>Our Services</h2>
-      <div class="services-grid">
-        <div class="card">
-          <img src="C1.jpg" alt="Colorbond Fencing">
-          <div class="card-content">
-            <h3>Colorbond Fencing</h3>
-            <p>Strong, modern, low-maintenance. The smart choice.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="A1.jpg" alt="Aluminium Fencing">
-          <div class="card-content">
-            <h3>Aluminium Fencing</h3>
-            <p>Lightweight, rust-proof, sleek and secure.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="T1.jpg" alt="Timber Fencing">
-          <div class="card-content">
-            <h3>Timber Fencing</h3>
-            <p>Classic warmth, treated for Aussie conditions.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="CR1.jpg" alt="Concrete Retaining Wall">
-          <div class="card-content">
-            <h3>Retaining Walls</h3>
-            <p>Concrete or hardwood — engineered to last.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- GALLERY -->
-    <section class="section">
-      <h2>Recent Work</h2>
-      <div class="gallery-grid">
-        <!-- Colorbond -->
-        <div class="gallery-card" data-label="Colorbond">
-          <img src="C1.jpg" alt="Colorbond Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Colorbond">
-          <img src="C2.jpg" alt="Colorbond Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Colorbond">
-          <img src="C3.jpg" alt="Colorbond Fence Project">
-        </div>
-        <!-- Aluminium -->
-        <div class="gallery-card" data-label="Aluminium">
-          <img src="A1.jpg" alt="Aluminium Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Aluminium">
-          <img src="A2.jpg" alt="Aluminium Fence Project">
-        </div>
-        <!-- Timber -->
-        <div class="gallery-card" data-label="Timber">
-          <img src="T1.jpg" alt="Timber Fence Project">
-        </div>
-        <div class="gallery-card" data-label="Timber">
-          <img src="T2.jpg" alt="Timber Fence Project">
-        </div>
-        <!-- Retaining -->
-        <div class="gallery-card" data-label="Hardwood Retaining">
-          <img src="HR1.jpg" alt="Hardwood Retaining Wall">
-        </div>
-        <div class="gallery-card" data-label="Concrete Retaining">
-          <img src="CR1.jpg" alt="Concrete Retaining Wall">
-        </div>
-      </div>
-    </section>
-
-    <!-- PHONE -->
-    <section class="section">
-      <div class="phone">Call Chris: <a href="tel:+61402346481" style="color:var(--primary); text-decoration:none;">0402 346 481</a></div>
-    </section>
-
-    <!-- CONTACT FORM -->
-    <section class="section">
-      <h2>Get a Free Quote</h2>
-      <form action="https://formspree.io/f/movyakvq" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="tel" name="phone" placeholder="Phone Number" required />
-        <input type="email" name="email" placeholder="Email (optional)" />
-        <textarea name="message" rows="4" placeholder="Tell Chris about your project..." required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-
-  </div>
-
-  <footer>
-    © 2025 Timbertop Fencing. Owned & Operated by Chris. All rights reserved.
   </footer>
 
 </body>
