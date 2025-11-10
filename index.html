@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Timbertop Fencing | Colorbond, Timber, PVC & Retaining Walls</title>
+  <title>Timbertop Fencing | Colorbond, Aluminium, Timber, PVC & Retaining Walls</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1a5fb4;   /* Colorbond blue */
-      --secondary: #4CAF50; /* Green accent for eco/PVC */
+      --primary: #1a5fb4;
+      --primary-dark: #144a8c;
       --dark: #1a1a1a;
       --light: #f8f9fa;
       --gray: #6c757d;
@@ -33,14 +33,6 @@
     .tagline { font-size: 1.3rem; opacity: 0.9; }
     .section { padding: 3rem 0; }
     h2 { text-align: center; margin-bottom: 2rem; color: var(--primary); font-size: 2rem; }
-    /* Card Design: Modern, simplish - Based on 2025 UI/UX best practices */
-    /* - Strong contrast: White cards on light bg */
-    /* - Consistent spacing: Grid with gaps */
-    /* - Balanced fonts: H3 bold, p regular */
-    /* - Responsive: Mobile stack */
-    /* - Accessibility: Alt text, contrast ratios */
-    /* - Subtle elevation: Soft shadow, rounded corners */
-    /* - Hover: Scale + shadow for interactivity */
     .services-grid, .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -68,7 +60,6 @@
     }
     .card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem; }
     .card p { color: var(--gray); font-size: 1rem; }
-    /* Gallery specific */
     .gallery-card { position: relative; }
     .gallery-card::after {
       content: attr(data-label);
@@ -76,11 +67,12 @@
       bottom: 1rem;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       color: white;
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-size: 0.9rem;
+      font-weight: 600;
     }
     .phone {
       font-size: 1.8rem;
@@ -113,7 +105,7 @@
       font-weight: 600;
       transition: 0.2s;
     }
-    button:hover { background: #144a8c; }
+    button:hover { background: var(--primary-dark); }
     footer {
       text-align: center;
       padding: 2rem;
@@ -132,86 +124,98 @@
   <header>
     <div class="container">
       <h1>Timbertop Fencing</h1>
-      <p class="tagline">Colorbond, Timber, PVC Fencing & Retaining Walls – Owned by Chris</p>
+      <p class="tagline">Colorbond, Aluminium, Timber, PVC Fencing & Retaining Walls – Owned by Chris</p>
     </div>
   </header>
 
   <div class="container">
 
+    <!-- SERVICES -->
     <section class="section">
       <h2>Our Services</h2>
       <div class="services-grid">
         <div class="card">
-          <img src="images/C1.jpg" alt="Colorbond Fencing Example">
+          <img src="C1.jpg" alt="Colorbond Fencing">
           <div class="card-content">
             <h3>Colorbond Fencing</h3>
-            <p>Strong, modern, low-maintenance. The smart choice for durable boundaries.</p>
+            <p>Strong, modern, low-maintenance. The smart choice.</p>
           </div>
         </div>
         <div class="card">
-          <img src="images/T1.jpg" alt="Timber Fencing Example">
+          <img src="A1.jpg" alt="Aluminium Fencing">
+          <div class="card-content">
+            <h3>Aluminium Fencing</h3>
+            <p>Lightweight, rust-proof, sleek and secure.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="T1.jpg" alt="Timber Fencing">
           <div class="card-content">
             <h3>Timber Fencing</h3>
-            <p>Classic look, treated for Aussie conditions. Natural and timeless.</p>
+            <p>Classic warmth, treated for Aussie conditions.</p>
           </div>
         </div>
         <div class="card">
-          <img src="images/P1.jpg" alt="PVC Fencing Example">
+          <img src="CR1.jpg" alt="Concrete Retaining Wall">
           <div class="card-content">
-            <h3>PVC Fencing</h3>
-            <p>Weather-resistant, eco-friendly alternative. Easy to clean and long-lasting.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/HR1.jpg" alt="Hardwood Retaining Wall Example">
-          <div class="card-content">
-            <h3>Hardwood Retaining Walls</h3>
-            <p>Robust timber solutions for sloped landscapes. Built to hold strong.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="images/CR1.jpg" alt="Concrete Retaining Wall Example">
-          <div class="card-content">
-            <h3>Concrete Retaining Walls</h3>
-            <p>Solid and versatile – concrete, block, or sleeper designs for maximum stability.</p>
+            <h3>Retaining Walls</h3>
+            <p>Concrete or hardwood — engineered to last.</p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- GALLERY -->
     <section class="section">
-      <h2>Our Work</h2>
+      <h2>Recent Work</h2>
       <div class="gallery-grid">
-        <!-- Add your images here; repeat pattern for more (e.g., T2, C2) -->
-        <div class="gallery-card" data-label="Timber Fence">
-          <img src="images/T1.jpg" alt="Timber Fence Project">
+        <!-- Colorbond -->
+        <div class="gallery-card" data-label="Colorbond">
+          <img src="C1.jpg" alt="Colorbond Fence Project">
         </div>
-        <div class="gallery-card" data-label="Colorbond Fence">
-          <img src="images/C1.jpg" alt="Colorbond Fence Project">
+        <div class="gallery-card" data-label="Colorbond">
+          <img src="C2.jpg" alt="Colorbond Fence Project">
         </div>
-        <div class="gallery-card" data-label="PVC Fence">
-          <img src="images/P1.jpg" alt="PVC Fence Project">
+        <div class="gallery-card" data-label="Colorbond">
+          <img src="C3.jpg" alt="Colorbond Fence Project">
         </div>
+        <!-- Aluminium -->
+        <div class="gallery-card" data-label="Aluminium">
+          <img src="A1.jpg" alt="Aluminium Fence Project">
+        </div>
+        <div class="gallery-card" data-label="Aluminium">
+          <img src="A2.jpg" alt="Aluminium Fence Project">
+        </div>
+        <!-- Timber -->
+        <div class="gallery-card" data-label="Timber">
+          <img src="T1.jpg" alt="Timber Fence Project">
+        </div>
+        <div class="gallery-card" data-label="Timber">
+          <img src="T2.jpg" alt="Timber Fence Project">
+        </div>
+        <!-- Retaining -->
         <div class="gallery-card" data-label="Hardwood Retaining">
-          <img src="images/HR1.jpg" alt="Hardwood Retaining Wall">
+          <img src="HR1.jpg" alt="Hardwood Retaining Wall">
         </div>
         <div class="gallery-card" data-label="Concrete Retaining">
-          <img src="images/CR1.jpg" alt="Concrete Retaining Wall">
+          <img src="CR1.jpg" alt="Concrete Retaining Wall">
         </div>
       </div>
     </section>
 
+    <!-- PHONE -->
     <section class="section">
       <div class="phone">Call Chris: <a href="tel:+61402346481" style="color:var(--primary); text-decoration:none;">0402 346 481</a></div>
     </section>
 
+    <!-- CONTACT FORM -->
     <section class="section">
       <h2>Get a Free Quote</h2>
       <form action="https://formspree.io/f/movyakvq" method="POST">
         <input type="text" name="name" placeholder="Your Name" required />
         <input type="tel" name="phone" placeholder="Phone Number" required />
         <input type="email" name="email" placeholder="Email (optional)" />
-        <textarea name="message" rows="4" placeholder="Tell us about your project..." required></textarea>
+        <textarea name="message" rows="4" placeholder="Tell Chris about your project..." required></textarea>
         <button type="submit">Send Message</button>
       </form>
     </section>
@@ -219,7 +223,7 @@
   </div>
 
   <footer>
-    &copy; 2025 Timbertop Fencing. Owned and Operated by Chris. All rights reserved.
+    © 2025 Timbertop Fencing. Owned & Operated by Chris. All rights reserved.
   </footer>
 
 </body>
