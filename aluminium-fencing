@@ -625,7 +625,7 @@
     <header>
         <div class="header-container">
             <a href="index.html">
-                <img src="images/logocb2.png" alt="Timbertop Fencing Logo" class="header-logo">
+                <img src="images/Logocb2.png" alt="Timbertop Fencing Logo" class="header-logo">
             </a>
             <nav class="nav-menu">
                 <ul class="nav-links">
@@ -646,7 +646,7 @@
     <div class="drawer-overlay" id="drawerOverlay"></div>
     <div class="mobile-drawer" id="mobileDrawer">
         <div class="drawer-header">
-            <img src="images/logocb2.png" alt="Timbertop Fencing Logo" class="drawer-logo">
+            <img src="images/Logocb2.png" alt="Timbertop Fencing Logo" class="drawer-logo">
             <button class="drawer-close" aria-label="Close menu">
                 <i class="fas fa-times"></i>
             </button>
