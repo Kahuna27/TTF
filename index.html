@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timbertop Fencing - Expert Fencing Solutions by Chris</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17717686162"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17717686162');
+    </script>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a5fb4;
+            --accent-green: #4CAF50;
+            --dark: #0a0a0a;
+            --light: #fff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 70px;
+            width: auto;
+            max-height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-green);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .header-cta:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-green);
+        }
+
+        /* Mobile Drawer Menu */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .drawer-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .drawer-close:hover {
+            color: var(--accent-green);
+        }
+
+        .drawer-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .drawer-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.75rem 0;
+            transition: color 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .drawer-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .drawer-cta {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--accent-green);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .drawer-cta:hover {
+            background: #45a049;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .header-cta {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .header-container {
+                padding: 0;
+            }
+
+            header {
+                padding: 1rem;
+            }
+        }
+
+        /* Overlay for mobile drawer */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(10, 10, 10, 0.6)), url('images/C1.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light);
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent-green);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+            background: #45a049;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: var(--light);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Testimonial Section */
+        .testimonial {
+            padding: 5rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .testimonial-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .testimonial-content blockquote {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-content cite {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-style: normal;
+        }
+
+        .testimonial-content i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Phone CTA Section */
+        .phone-cta {
+            background: var(--primary-blue);
+            color: var(--light);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .phone-cta h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .phone-cta a {
+            display: inline-block;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border: 2px solid var(--light);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .phone-cta a:hover {
+            background: var(--light);
+            color: var(--primary-blue);
+        }
+
+        .phone-cta i {
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Form Section */
+        .contact {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group .required {
+            color: #e74c3c;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-green);
+            color: var(--light);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .submit-button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--light);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Service Area Heading */
+        .service-area-heading {
+            padding: 3rem 2rem;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .service-area-heading h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                height: 100vh;
+                min-height: 500px;
+            }
+
+            .header-logo {
+                height: 50px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .testimonial-content {
+                padding: 2rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="/">
+                <img src="images/Logocb2.png" alt="Timbertop Fencing Logo" class="header-logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="/colorbond-fencing">Colorbond</a></li>
+                    <li><a href="/aluminium-fencing">Aluminium</a></li>
+                    <li><a href="/timber-fencing">Timber</a></li>
+                    <li><a href="/retaining-walls">Retaining Walls</a></li>
+                </ul>
+                <a href="#contact" class="header-cta">Get Quote</a>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <img src="images/logocb2.png" alt="Timbertop Fencing Logo" class="drawer-logo">
+            <button class="drawer-close" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="/colorbond-fencing">Colorbond</a></li>
+            <li><a href="/aluminium-fencing">Aluminium</a></li>
+            <li><a href="/timber-fencing">Timber</a></li>
+            <li><a href="/retaining-walls">Retaining Walls</a></li>
+        </ul>
+        <a href="#contact" class="drawer-cta">Get Quote</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Secure Your Space with Timbertop Fencing</h1>
+            <p>Expert Colorbond, Aluminium, Timber & Retaining Walls – Built to Last by Chris</p>
+            <a href="#contact" class="cta-button">Get Your Free Quote Today</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <a href="/colorbond-fencing" class="service-card-link">
+                    <div class="service-card">
+                        <i class="fas fa-shield-alt service-icon"></i>
+                        <img src="images/C1.jpg" alt="Colorbond Fencing" class="service-image">
+                        <h3>Colorbond Fencing</h3>
+                        <p>Durable, low-maintenance Colorbond fencing solutions that provide security and style for your property.</p>
+                    </div>
+                </a>
+                <a href="/aluminium-fencing" class="service-card-link">
+                    <div class="service-card">
+                        <i class="fas fa-building service-icon"></i>
+                        <img src="images/A1.jpg" alt="Aluminium Fencing" class="service-image">
+                        <h3>Aluminium & Specialty Fencing</h3>
+                        <p>Lightweight yet strong aluminium fencing options perfect for modern homes and commercial properties.</p>
+                    </div>
+                </a>
+                <a href="/timber-fencing" class="service-card-link">
+                    <div class="service-card">
+                        <i class="fas fa-tree service-icon"></i>
+                        <img src="images/T1.jpg" alt="Timber Fencing" class="service-image">
+                        <h3>Timber Fencing</h3>
+                        <p>Classic timber fencing that adds natural beauty and warmth to your outdoor space with expert craftsmanship.</p>
+                    </div>
+                </a>
+                <a href="/retaining-walls" class="service-card-link">
+                    <div class="service-card">
+                        <i class="fas fa-layer-group service-icon"></i>
+                        <img src="images/CR1.jpg" alt="Retaining Walls" class="service-image">
+                        <h3>Retaining Walls & Concrete Sleepers</h3>
+                        <p>Professional retaining wall construction to manage slopes and create usable space in your landscape.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/C1.jpg" alt="Colorbond Installation">
+                    <div class="gallery-overlay">
+                        <span>Colorbond Fencing with Stained Pine Sleepers</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/C2.jpg" alt="Colorbond Fencing">
+                    <div class="gallery-overlay">
+                        <span>Colorbond Fencing with Hardwood Posts and Sleepers</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/C3.jpg" alt="Colorbond Project">
+                    <div class="gallery-overlay">
+                        <span>Colorbond Fencing with Hardwood Posts and Sleepers</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/A1.jpg" alt="Aluminium Fencing">
+                    <div class="gallery-overlay">
+                        <span>Aluminium Fence & Gate with Hardwood Posts</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/A2.jpg" alt="Aluminium Fencing">
+                    <div class="gallery-overlay">
+                        <span>Aluminium fleur-de-lis Fencing</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/T1.jpg" alt="Timber Fencing">
+                    <div class="gallery-overlay">
+                        <span>Exposed Hardwood Posts with Butted Pine Palings, Sleepers and Capping</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/T2.jpg" alt="Timber Fencing">
+                    <div class="gallery-overlay">
+                        <span>Specialty Timber Fencing - Hardwood Sleepers and Posts, Alternate Hardwood Palings and Pine Battens </span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/CR1.jpg" alt="Retaining Wall">
+                    <div class="gallery-overlay">
+                        <span>Concrete Retaining Wall with Colorbond Fence</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/HR1.jpg" alt="Retaining Wall">
+                    <div class="gallery-overlay">
+                        <span>Aluminium Slat Fencing with Hardwood Retaining Wall</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="testimonial-content">
+                <i class="fas fa-quote-left"></i>
+                <blockquote>
+                    Chris and the team transformed our backyard with a beautiful Colorbond fence. The quality of work was exceptional, and they completed the job on time and within budget. Highly recommend Timbertop Fencing!
+                </blockquote>
+                <cite>– Sarah M.</cite>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area Heading -->
+      <section class="service-area-heading">
+          <div class="container">
+              <h2>Servicing the Sunshine Coast and Surrounding Areas</h2>
+          </div>
+      </section>
+
+    <!-- Phone CTA Section -->
+    <section class="phone-cta">
+        <div class="container">
+            <h2>Call Chris Today</h2>
+            <a href="tel:0402346481"><i class="fas fa-phone"></i> 0402 346 481</a>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get Your Free Quote</h2>
+            <form class="contact-form" action="https://formspree.io/f/movyakvq" method="POST">
+                <input type="hidden" name="_next" value="/thank-you">
+                <div class="form-group">
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message <span class="required">*</span></label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Timbertop Fencing. Owned & Operated by Chris.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;"><i class="fas fa-map-marker-alt"></i> Based on the Sunshine Coast | Servicing the Sunshine Coast Region</p>
+        <div style="margin-top: 1rem;">
+            <a href="/" style="color: var(--light); text-decoration: none; margin: 0 1rem;">Home</a>
+            <a href="/colorbond-fencing" style="color: var(--light); text-decoration: none; margin: 0 1rem;">Colorbond</a>
+            <a href="/timber-fencing" style="color: var(--light); text-decoration: none; margin: 0 1rem;">Timber</a>
+            <a href="/aluminium-fencing" style="color: var(--light); text-decoration: none; margin: 0 1rem;">Aluminium</a>
+            <a href="/retaining-walls" style="color: var(--light); text-decoration: none; margin: 0 1rem;">Retaining Walls</a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Drawer Menu Functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const drawer = document.getElementById('mobileDrawer');
+        const drawerClose = document.querySelector('.drawer-close');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerLinks = document.querySelectorAll('.drawer-links a, .drawer-cta');
+
+        function openDrawer() {
+            drawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            drawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', openDrawer);
+        drawerClose.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+
+        // Close drawer when clicking on a link
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeDrawer();
+            });
+        });
+
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.startsWith('#contact')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
