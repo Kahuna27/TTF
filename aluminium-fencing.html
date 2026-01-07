@@ -38,25 +38,245 @@
             overflow-x: hidden;
         }
 
-        nav {
-            background: rgba(10, 10, 10, 0.95);
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
             padding: 1rem 2rem;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        nav a {
-            color: var(--light);
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: var(--dark);
             text-decoration: none;
             font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            padding: 0.75rem 1.5rem;
+            background: var(--accent-green);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .header-cta:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
+        .menu-toggle:hover {
             color: var(--accent-green);
+        }
+
+        /* Mobile Drawer Menu */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 2rem;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+        }
+
+        .mobile-drawer.active {
+            right: 0;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .drawer-logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .drawer-close:hover {
+            color: var(--accent-green);
+        }
+
+        .drawer-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .drawer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .drawer-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.75rem 0;
+            transition: color 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .drawer-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .drawer-cta {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--accent-green);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .drawer-cta:hover {
+            background: #45a049;
+        }
+
+        /* Overlay for mobile drawer */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .header-cta {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .header-container {
+                padding: 0;
+            }
+
+            header {
+                padding: 1rem;
+            }
         }
 
         .hero {
@@ -68,7 +288,7 @@
             text-align: center;
             color: var(--light);
             position: relative;
-            margin-top: 60px;
+            margin-top: 80px;
         }
 
         .hero-content {
@@ -339,6 +559,31 @@
             color: var(--accent-green);
         }
 
+        /* Service Area Section */
+        .service-area {
+            padding: 3rem 2rem;
+            background: var(--primary-blue);
+            color: var(--light);
+            text-align: center;
+        }
+
+        .service-area h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        .service-area p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .service-area i {
+            margin-right: 0.5rem;
+            color: var(--accent-green);
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -358,7 +603,7 @@
             .hero {
                 height: 100vh;
                 min-height: 500px;
-                margin-top: 50px;
+                margin-top: 80px;
             }
 
             .gallery-grid {
@@ -375,6 +620,45 @@
     <nav>
         <a href="index.html">← Back to Home</a>
     </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <img src="images/logocb2.png" alt="Timbertop Fencing Logo" class="header-logo">
+            </a>
+            <nav class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="colorbond-fencing.html">Colorbond</a></li>
+                    <li><a href="aluminium-fencing.html">Aluminium</a></li>
+                    <li><a href="timber-fencing.html">Timber</a></li>
+                    <li><a href="retaining-walls.html">Retaining Walls</a></li>
+                </ul>
+                <a href="#contact" class="header-cta">Get Quote</a>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <img src="images/logocb2.png" alt="Timbertop Fencing Logo" class="drawer-logo">
+            <button class="drawer-close" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="colorbond-fencing.html">Colorbond</a></li>
+            <li><a href="aluminium-fencing.html">Aluminium</a></li>
+            <li><a href="timber-fencing.html">Timber</a></li>
+            <li><a href="retaining-walls.html">Retaining Walls</a></li>
+        </ul>
+        <a href="#contact" class="drawer-cta">Get Quote</a>
+    </div>
 
     <section class="hero">
         <div class="hero-content">
@@ -477,6 +761,7 @@
 
     <footer>
         <p>&copy; 2025 Timbertop Fencing. Owned & Operated by Chris.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;"><i class="fas fa-map-marker-alt"></i> Based on the Sunshine Coast | Servicing the Sunshine Coast Region</p>
         <div style="margin-top: 1rem;">
             <a href="index.html">Home</a>
             <a href="colorbond-fencing.html">Colorbond</a>
@@ -485,5 +770,56 @@
             <a href="retaining-walls.html">Retaining Walls</a>
         </div>
     </footer>
+
+    <script>
+        // Mobile Drawer Menu Functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const drawer = document.getElementById('mobileDrawer');
+        const drawerClose = document.querySelector('.drawer-close');
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const drawerLinks = document.querySelectorAll('.drawer-links a, .drawer-cta');
+
+        function openDrawer() {
+            drawer.classList.add('active');
+            drawerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            drawer.classList.remove('active');
+            drawerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', openDrawer);
+        drawerClose.addEventListener('click', closeDrawer);
+        drawerOverlay.addEventListener('click', closeDrawer);
+
+        // Close drawer when clicking on a link
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeDrawer();
+            });
+        });
+
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.startsWith('#contact')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
