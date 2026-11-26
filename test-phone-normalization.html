@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Normalization Test</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #1a5fb4;
+        }
+        .test-case {
+            background: #f8f9fa;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        .test-case.fail {
+            border-left-color: #e74c3c;
+        }
+        .input {
+            font-weight: bold;
+            color: #333;
+        }
+        .output {
+            color: #666;
+            font-family: monospace;
+        }
+        .expected {
+            color: #4CAF50;
+            font-family: monospace;
+        }
+        .error {
+            color: #e74c3c;
+        }
+        #results {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phone Number E.164 Normalization Test</h1>
+    <p>Testing Australian phone number conversion to E.164 format (+61...)</p>
+    
+    <div id="results"></div>
+    
+    <script src="/conversion-tracking.js"></script>
+    <script>
+        // Test cases for Australian phone numbers
+        const testCases = [
+            // Mobile numbers
+            { input: '0402346481', expected: '+61402346481', description: 'Mobile without formatting' },
+            { input: '0402 346 481', expected: '+61402346481', description: 'Mobile with spaces' },
+            { input: '0402-346-481', expected: '+61402346481', description: 'Mobile with dashes' },
+            { input: '(0402) 346 481', expected: '+61402346481', description: 'Mobile with parentheses' },
+            { input: '04 0234 6481', expected: '+61402346481', description: 'Mobile with varied spacing' },
+            
+            // Landline numbers (Brisbane area code 07)
+            { input: '0732221111', expected: '+61732221111', description: 'Landline without formatting' },
+            { input: '07 3222 1111', expected: '+61732221111', description: 'Landline with spaces' },
+            { input: '(07) 3222 1111', expected: '+61732221111', description: 'Landline with parentheses' },
+            
+            // Already in international format
+            { input: '+61402346481', expected: '+61402346481', description: 'Already in E.164 format' },
+            { input: '61402346481', expected: '+61402346481', description: 'International without +' },
+            
+            // Invalid cases (should return null)
+            { input: '', expected: null, description: 'Empty string' },
+            { input: '123', expected: null, description: 'Too short' },
+            { input: null, expected: null, description: 'Null input' },
+            { input: '12345', expected: null, description: 'Invalid short number' }
+        ];
+        
+        function runTests() {
+            const resultsDiv = document.getElementById('results');
+            let passed = 0;
+            let failed = 0;
+            
+            testCases.forEach((testCase, index) => {
+                const result = normalizePhoneToE164(testCase.input);
+                const success = result === testCase.expected;
+                
+                if (success) {
+                    passed++;
+                } else {
+                    failed++;
+                }
+                
+                const testDiv = document.createElement('div');
+                testDiv.className = 'test-case' + (success ? '' : ' fail');
+                testDiv.innerHTML = `
+                    <div><strong>Test ${index + 1}:</strong> ${testCase.description}</div>
+                    <div class="input">Input: "${testCase.input}"</div>
+                    <div class="expected">Expected: ${testCase.expected}</div>
+                    <div class="output">Got: ${result}</div>
+                    <div class="${success ? '' : 'error'}"><strong>${success ? '✓ PASS' : '✗ FAIL'}</strong></div>
+                `;
+                resultsDiv.appendChild(testDiv);
+            });
+            
+            const summary = document.createElement('div');
+            summary.style.cssText = 'margin-top: 2rem; padding: 1rem; background: ' + (failed === 0 ? '#d4edda' : '#f8d7da') + '; border-radius: 8px;';
+            summary.innerHTML = `
+                <h2>Test Summary</h2>
+                <p><strong>Passed:</strong> ${passed} / ${testCases.length}</p>
+                <p><strong>Failed:</strong> ${failed} / ${testCases.length}</p>
+            `;
+            resultsDiv.appendChild(summary);
+            
+            console.log(`Phone normalization tests: ${passed} passed, ${failed} failed`);
+        }
+        
+        // Run tests when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runTests);
+        } else {
+            runTests();
+        }
+    </script>
+</body>
+</html>
