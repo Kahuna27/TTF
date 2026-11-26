@@ -547,6 +547,33 @@
             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
         }
 
+        .form-notice {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            background: #f8f9fa;
+            border-left: 3px solid var(--primary-blue);
+            border-radius: 5px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .form-notice a {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+
+        .form-notice a:hover {
+            color: var(--accent-green);
+        }
+
+        @media (max-width: 768px) {
+            .form-notice {
+                font-size: 0.85rem;
+                padding: 0.65rem 0.85rem;
+            }
+        }
+
         /* Footer */
         footer {
             background: var(--dark);
@@ -657,12 +684,12 @@
                 <div class="feature-card">
                     <i class="fas fa-shield-alt feature-icon"></i>
                     <h3>Durable & Long-Lasting</h3>
-                    <p>Built to withstand harsh Australian weather. Colorbond steel comes with a 10-year manufacturer's warranty, passed on to you.</p>
+                    <p>Built for tough Queensland conditions. Genuine COLORBOND® steel fencing is backed by BlueScope, and eligible fences can get a BlueScope warranty of up to 15 years. The period depends on your location (for example, distance from the coast), correct installation and regular maintenance, and you apply for it directly with BlueScope. This is on top of your rights under the Australian Consumer Law.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-paint-brush feature-icon"></i>
                     <h3>Low Maintenance</h3>
-                    <p>No painting or staining required - just occasional cleaning to keep it looking new</p>
+                    <p>No painting or staining. Just hose it down every six months to keep it looking good.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-palette feature-icon"></i>
@@ -686,19 +713,19 @@
                 <div class="gallery-item">
                     <img src="/images/C1.jpg" alt="Colorbond Installation">
                     <div class="gallery-overlay">
-                        <span>Colorbond Fencing with Stained Pine Sleepers</span>
+                        <span>Colorbond Fencing with Stained Pine Sleepers<br><em style="font-size: 0.9rem; opacity: 0.9;">Warranty cover for hybrid timber-and-steel fences may differ. Ask us.</em></span>
                     </div>
                 </div>
                 <div class="gallery-item">
                     <img src="/images/C2.jpg" alt="Colorbond Fencing">
                     <div class="gallery-overlay">
-                        <span>Colorbond Fencing with Hardwood Posts and Sleepers</span>
+                        <span>Colorbond Fencing with Hardwood Posts and Sleepers<br><em style="font-size: 0.9rem; opacity: 0.9;">Warranty cover for hybrid timber-and-steel fences may differ. Ask us.</em></span>
                     </div>
                 </div>
                 <div class="gallery-item">
                     <img src="/images/C3.jpg" alt="Colorbond Project">
                     <div class="gallery-overlay">
-                        <span>Colorbond Fencing with Hardwood Posts and Sleepers</span>
+                        <span>Colorbond Fencing with Hardwood Posts and Sleepers<br><em style="font-size: 0.9rem; opacity: 0.9;">Warranty cover for hybrid timber-and-steel fences may differ. Ask us.</em></span>
                     </div>
                 </div>
             </div>
@@ -741,6 +768,9 @@
                     <textarea id="message" name="message" required></textarea>
                 </div>
                 <button type="submit" class="submit-button">Send Message</button>
+                <div class="form-notice">
+                    We use your details to reply to your enquiry and prepare your quote. Our form provider, Formspree, stores them in the USA, and we share a scrambled (hashed) copy of your contact details with Google to measure how our ads perform. See our <a href="/privacy-policy">Privacy Policy</a>.
+                </div>
             </form>
         </div>
     </section>
@@ -755,6 +785,8 @@
             <a href="/timber-fencing">Timber</a>
             <a href="/aluminium-fencing">Aluminium</a>
             <a href="/retaining-walls">Retaining Walls</a>
+            <span style="margin: 0 0.5rem;">|</span>
+            <a href="/privacy-policy">Privacy Policy</a>
         </div>
     </footer>
 
