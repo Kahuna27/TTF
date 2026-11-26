@@ -3,51 +3,49 @@
  * Centralized conversion tracking for forms and phone calls
  */
 
-// Conversion tracking configuration
-// Account: 8557425094
+// Conversion tracking configuration - Account: 8557425094
 const CONVERSION_CONFIG = {
   GOOGLE_ADS_ID: 'AW-17717686162',
-  FORM_CONVERSION_LABEL: 'IpjiCNmt3r8dEJLfuYBC',  // Website Quote Form
-  CALL_CONVERSION_LABEL: 'jnzGCNyt3r8dEJLfuYBC'   // Website Phone Tap (tel:)
+  FORM_CONVERSION_LABEL: 'IpjiCNmt3r8dEJLfuYBC',
+  CALL_CONVERSION_LABEL: 'jnzGCNyt3r8dEJLfuYBC'
 };
 
 /**
  * Normalize Australian phone number to E.164 format (+61...)
- * Handles common formats: 04xx..., 07..., (07)..., etc.
+ * Handles common formats: 04xx..., 07..., (07)..., 402346481, +61 04..., etc.
  */
 function normalizePhoneToE164(phone) {
   if (!phone || typeof phone !== 'string') return null;
   
-  // Remove all non-digit characters
-  const digits = phone.replace(/\D/g, '');
+  let digits = phone.replace(/\D/g, '');
   
-  // Handle empty or too short numbers
   if (digits.length < 9) return null;
   
-  // Australian mobile: starts with 04 (10 digits) -> +614...
-  if (digits.length === 10 && digits.startsWith('04')) {
-    return '+61' + digits.substring(1);
+  // Handle +61 0xxx typo (e.g. "+61 0402 346 481" -> remove the 0)
+  if (phone.trim().startsWith('+61') && digits.length === 12 && digits.startsWith('610')) {
+    digits = '61' + digits.substring(3);
   }
   
-  // Australian landline: starts with 0 followed by area code (10 digits) -> +61...
+  // 9-digit mobile without leading 0 (e.g. "402346481")
+  if (digits.length === 9 && digits.startsWith('4')) {
+    return '+61' + digits;
+  }
+  
+  // 10-digit starting with 0 (mobile or landline)
   if (digits.length === 10 && digits.startsWith('0')) {
     return '+61' + digits.substring(1);
   }
   
-  // Already in international format starting with 61
+  // 11-digit starting with 61 (international without +)
   if (digits.length === 11 && digits.startsWith('61')) {
     return '+' + digits;
   }
   
-  // Already has + prefix
-  if (phone.trim().startsWith('+61')) {
-    const cleanedDigits = phone.replace(/\D/g, '');
-    if (cleanedDigits.length === 11) {
-      return '+' + cleanedDigits;
-    }
+  // Already correct format
+  if (digits.length === 11 && phone.trim().startsWith('+61')) {
+    return '+' + digits;
   }
   
-  // Invalid format
   return null;
 }
 
@@ -57,12 +55,10 @@ function normalizePhoneToE164(phone) {
 function prepareEnhancedConversionData(formData) {
   const userData = {};
   
-  // Email - trim and lowercase
   if (formData.email && formData.email.trim()) {
     userData.email = formData.email.trim().toLowerCase();
   }
   
-  // Phone - normalize to E.164
   if (formData.phone && formData.phone.trim()) {
     const normalizedPhone = normalizePhoneToE164(formData.phone);
     if (normalizedPhone) {
@@ -70,18 +66,9 @@ function prepareEnhancedConversionData(formData) {
     }
   }
   
-  // Address fields - only include if present
   const addressFields = {};
   
-  if (formData.firstName && formData.firstName.trim()) {
-    addressFields.first_name = formData.firstName.trim();
-  }
-  if (formData.lastName && formData.lastName.trim()) {
-    addressFields.last_name = formData.lastName.trim();
-  }
-  
-  // Parse name from single name field if first/last not separately provided
-  if (!addressFields.first_name && !addressFields.last_name && formData.name && formData.name.trim()) {
+  if (formData.name && formData.name.trim()) {
     const nameParts = formData.name.trim().split(/\s+/);
     if (nameParts.length > 0) {
       addressFields.first_name = nameParts[0];
@@ -94,17 +81,7 @@ function prepareEnhancedConversionData(formData) {
   if (formData.address && formData.address.trim()) {
     addressFields.street = formData.address.trim();
   }
-  if (formData.city && formData.city.trim()) {
-    addressFields.city = formData.city.trim();
-  }
-  if (formData.region && formData.region.trim()) {
-    addressFields.region = formData.region.trim();
-  }
-  if (formData.postalCode && formData.postalCode.trim()) {
-    addressFields.postal_code = formData.postalCode.trim();
-  }
   
-  // Always set country to AU for Australian business
   if (Object.keys(addressFields).length > 0) {
     addressFields.country = 'AU';
     userData.address = addressFields;
@@ -116,150 +93,158 @@ function prepareEnhancedConversionData(formData) {
 /**
  * Fire Google Ads conversion event with Enhanced Conversions
  */
-function fireConversion(conversionLabel, userData = {}) {
+function fireConversion(conversionLabel, userData, callback) {
   if (typeof gtag === 'undefined') {
-    console.warn('gtag is not loaded, cannot fire conversion');
+    if (callback) callback();
     return;
   }
   
-  // Set Enhanced Conversions user data if provided
-  if (Object.keys(userData).length > 0) {
+  if (userData && Object.keys(userData).length > 0) {
     gtag('set', 'user_data', userData);
   }
   
-  // Fire the conversion event
-  gtag('event', 'conversion', {
-    'send_to': CONVERSION_CONFIG.GOOGLE_ADS_ID + '/' + conversionLabel
-  });
+  const conversionConfig = {
+    'send_to': CONVERSION_CONFIG.GOOGLE_ADS_ID + '/' + conversionLabel,
+    'transport_type': 'beacon'
+  };
   
-  console.log('Conversion fired:', conversionLabel);
+  if (callback) {
+    let callbackFired = false;
+    conversionConfig.event_callback = function() {
+      if (!callbackFired) {
+        callbackFired = true;
+        callback();
+      }
+    };
+    
+    setTimeout(function() {
+      if (!callbackFired) {
+        callbackFired = true;
+        callback();
+      }
+    }, 800);
+  }
+  
+  gtag('event', 'conversion', conversionConfig);
 }
 
 /**
- * Handle form submission with single-fire guard
+ * Handle form submission with AJAX and conversion tracking
  */
-function handleFormSubmission(form) {
-  // Single-fire guard using form attribute
-  if (form.dataset.conversionFired === 'true') {
-    console.log('Conversion already fired for this form submission');
+function handleFormSubmit(event) {
+  event.preventDefault();
+  
+  const form = event.target;
+  
+  if (form.dataset.submitting === 'true') {
     return;
   }
   
-  // Mark conversion as fired
-  form.dataset.conversionFired = 'true';
+  form.dataset.submitting = 'true';
   
-  // Collect form data
-  const formData = {
-    name: form.querySelector('[name="name"]')?.value || '',
-    phone: form.querySelector('[name="phone"]')?.value || '',
-    email: form.querySelector('[name="email"]')?.value || '',
-    address: form.querySelector('[name="address"]')?.value || '',
-    firstName: form.querySelector('[name="firstName"]')?.value || '',
-    lastName: form.querySelector('[name="lastName"]')?.value || '',
-    city: form.querySelector('[name="city"]')?.value || '',
-    region: form.querySelector('[name="region"]')?.value || '',
-    postalCode: form.querySelector('[name="postalCode"]')?.value || ''
+  const submitButton = form.querySelector('button[type="submit"]');
+  const originalButtonText = submitButton ? submitButton.textContent : '';
+  
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+  }
+  
+  const formData = new FormData(form);
+  
+  const userData = {
+    name: formData.get('name') || '',
+    phone: formData.get('phone') || '',
+    email: formData.get('email') || '',
+    address: formData.get('address') || ''
   };
   
-  // Prepare Enhanced Conversions data
-  const userData = prepareEnhancedConversionData(formData);
-  
-  // Fire conversion
-  fireConversion(CONVERSION_CONFIG.FORM_CONVERSION_LABEL, userData);
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(function(response) {
+    if (response.ok) {
+      const enhancedData = prepareEnhancedConversionData(userData);
+      const nextUrl = formData.get('_next') || '/thank-you';
+      
+      fireConversion(CONVERSION_CONFIG.FORM_CONVERSION_LABEL, enhancedData, function() {
+        window.location.href = nextUrl;
+      });
+    } else {
+      return response.json().then(function(data) {
+        throw new Error(data.error || 'Form submission failed');
+      });
+    }
+  })
+  .catch(function(error) {
+    form.dataset.submitting = 'false';
+    
+    if (submitButton) {
+      submitButton.disabled = false;
+      submitButton.textContent = originalButtonText;
+    }
+    
+    let errorDiv = form.querySelector('.form-error-message');
+    if (!errorDiv) {
+      errorDiv = document.createElement('div');
+      errorDiv.className = 'form-error-message';
+      errorDiv.style.cssText = 'color: #e74c3c; background: #fee; padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #e74c3c;';
+      form.appendChild(errorDiv);
+    }
+    errorDiv.textContent = 'Sorry, there was an error submitting your form. Please try again or call us directly at 0402 346 481.';
+  });
 }
 
 /**
  * Initialize phone tap (tel:) conversion tracking
  */
 function initPhoneTapTracking() {
-  // Use event delegation on document to catch all tel: links
   document.addEventListener('click', function(event) {
-    // Find the closest anchor tag
     const anchor = event.target.closest('a[href^="tel:"]');
     
     if (anchor) {
-      // Check if conversion already fired for this session
-      const sessionKey = 'ttf_call_conversion_fired';
-      
-      if (!sessionStorage.getItem(sessionKey)) {
-        // Mark as fired in session
-        sessionStorage.setItem(sessionKey, 'true');
+      if (!sessionStorage.getItem('ttf_call_conversion_fired')) {
+        sessionStorage.setItem('ttf_call_conversion_fired', 'true');
         
-        // Fire conversion with beacon transport for reliability
         if (typeof gtag !== 'undefined') {
           gtag('event', 'conversion', {
             'send_to': CONVERSION_CONFIG.GOOGLE_ADS_ID + '/' + CONVERSION_CONFIG.CALL_CONVERSION_LABEL,
-            'transport_type': 'beacon',
-            'event_callback': function() {
-              console.log('Phone call conversion tracked');
-            }
+            'transport_type': 'beacon'
           });
-          
-          console.log('Phone tap conversion fired');
         }
       }
     }
-  }, true); // Use capture phase to ensure we catch the event
+  }, true);
 }
 
 /**
  * Initialize Formspree form tracking
- * Formspree redirects to _next URL on success, so we track on the thank-you page
  */
-function initFormspreeTracking() {
+function initFormTracking() {
   const forms = document.querySelectorAll('form[action*="formspree.io"]');
   
-  forms.forEach(form => {
-    // For Formspree, we'll track on the thank-you page instead
-    // This is more reliable than trying to intercept the redirect
-    console.log('Formspree form detected - conversion will fire on thank-you page');
+  forms.forEach(function(form) {
+    form.addEventListener('submit', handleFormSubmit);
   });
-}
-
-/**
- * Check if we're on the thank-you page and should fire conversion
- */
-function checkThankYouPage() {
-  // Check if we're on the thank-you page
-  if (window.location.pathname.includes('/thank-you')) {
-    // Check if we came from a form submission
-    const referer = document.referrer;
-    const isFromForm = referer && (referer.includes('formspree.io') || referer.includes(window.location.hostname));
-    
-    // Check if conversion already fired for this thank-you page load
-    const sessionKey = 'ttf_form_conversion_fired_' + Date.now();
-    const recentConversion = sessionStorage.getItem('ttf_last_form_conversion');
-    const timeSinceLastConversion = recentConversion ? (Date.now() - parseInt(recentConversion)) : Infinity;
-    
-    // Only fire if we haven't fired in the last 5 seconds (prevents double-fire on refresh)
-    if (isFromForm && timeSinceLastConversion > 5000) {
-      sessionStorage.setItem('ttf_last_form_conversion', Date.now().toString());
-      
-      // Fire conversion (no user data available on thank-you page, but conversion still counts)
-      fireConversion(CONVERSION_CONFIG.FORM_CONVERSION_LABEL, {});
-      
-      console.log('Thank-you page form conversion fired');
-    }
-  }
 }
 
 /**
  * Initialize all conversion tracking
  */
 function initConversionTracking() {
-  // Wait for DOM to be ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       initPhoneTapTracking();
-      initFormspreeTracking();
-      checkThankYouPage();
+      initFormTracking();
     });
   } else {
     initPhoneTapTracking();
-    initFormspreeTracking();
-    checkThankYouPage();
+    initFormTracking();
   }
 }
 
-// Auto-initialize
 initConversionTracking();
