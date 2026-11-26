@@ -51,6 +51,7 @@ function normalizePhoneToE164(phone) {
 
 /**
  * Prepare Enhanced Conversions user data from form fields
+ * Only sends email and phone_number (hashed by Google) for privacy compliance
  */
 function prepareEnhancedConversionData(formData) {
   const userData = {};
@@ -64,27 +65,6 @@ function prepareEnhancedConversionData(formData) {
     if (normalizedPhone) {
       userData.phone_number = normalizedPhone;
     }
-  }
-  
-  const addressFields = {};
-  
-  if (formData.name && formData.name.trim()) {
-    const nameParts = formData.name.trim().split(/\s+/);
-    if (nameParts.length > 0) {
-      addressFields.first_name = nameParts[0];
-      if (nameParts.length > 1) {
-        addressFields.last_name = nameParts.slice(1).join(' ');
-      }
-    }
-  }
-  
-  if (formData.address && formData.address.trim()) {
-    addressFields.street = formData.address.trim();
-  }
-  
-  if (Object.keys(addressFields).length > 0) {
-    addressFields.country = 'AU';
-    userData.address = addressFields;
   }
   
   return userData;
